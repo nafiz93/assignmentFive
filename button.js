@@ -5,8 +5,10 @@ plusminus('copy-btn', 'copy-balance', true, true)
 plusminus('call-btn', 'call-balance', false, false)
 // append('.call-btn', '.card', 'history', '.service-name', '.service-number')
 
-document.getElementById("clear").addEventListener("click", () => {
-    document.getElementById("history").innerHTML = "";
+document.querySelectorAll(".clear").forEach(clearBtn => {
+    clearBtn.addEventListener("click", () => {
+        document.getElementById("history").innerHTML = "";
+    });
 });
 
 
@@ -17,6 +19,6 @@ document.querySelectorAll(".copy-btn").forEach(btn => {
         //let name = card.querySelector('.service-name');
         let number = card.querySelector('.service-number');
         navigator.clipboard.writeText(number.innerText);
-        alert("Copied: " + number.innerText);
+        alert("📋 Number Copied-- " + number.innerText);
     });
 });

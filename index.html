@@ -18,6 +18,37 @@
         .inter {
             font-family: 'Inter', sans-serif;
         }
+
+        .call-record {
+            min-height: 105px;
+            padding: 20px;
+            border-radius: 8px;
+            background: var(--Surface, rgba(250, 250, 250, 1));
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .call-record h1 {
+            color: var(--Dark, rgba(17, 17, 17, 1));
+
+            font-family: Inter;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 100%;
+            letter-spacing: 0%;
+            text-align: left;
+        }
+
+        .call-record p {
+            color: var(--Dark, rgba(17, 17, 17, 1));
+
+            font-family: Hind Madurai;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 100%;
+            letter-spacing: 0%;
+            text-align: left;
+        }
     </style>
 
     <title>Emergency Contact</title>
@@ -25,29 +56,72 @@
 
 <body>
     <!-- nav starts here -->
-    <nav class="flex justify-between max-w-[1300px] w-full mx-auto mt-10">
-        <div class="flex gap-4 items-center">
-            <div>
-                <img class="w-[50px] h-[50px]" src="/B12-A5-Emergency-Hotline/assets/logo.png" alt="">
+
+
+    <nav class="w-full max-w-[1300px] mt-10 px-6 py-3  rounded-lg bg-white shadow-sm mx-auto">
+        <div class="flex items-center justify-between">
+            <!-- Left: Logo -->
+            <div class="flex items-center space-x-2">
+                <div>
+                    <img class="w-[50px] h-[50px]" src="/B12-A5-Emergency-Hotline/assets/logo.png" alt="">
+                </div>
+                <span class="font-bold text-lg">
+                    <h2 class="font-bold inter">Emergency <br> Service</h2>
+                </span>
             </div>
-            <h2 class="font-bold inter">Emergency <br> Service</h2>
+
+            <!-- Hamburger button (mobile) -->
+            <button id="menu-btn" class="md:hidden text-gray-600 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <!-- Right: Nav links (desktop) -->
+            <div class="hidden md:flex items-center space-x-6">
+                <div class="flex justify-around gap-4 ">
+                    <div
+                        class="flex gap-2 items-center justify-center rounded-[50px] bg-[rgba(65,255,107,0.1)] w-[123px] h-[52px]">
+                        <p id="heart-total" class="font-bold">0</p>
+                        <img class="w-[30px] h-[30px]" src="/B12-A5-Emergency-Hotline/assets/heart.png" alt="">
+                    </div>
+                    <div
+                        class="flex gap-2 items-center justify-center rounded-[50px] bg-[rgba(65,255,107,0.1)] w-[123px] h-[52px]">
+                        <p class="font-bold" id="call-balance">100</p>
+                        <img class="w-[24px] h-[24px]" src="/B12-A5-Emergency-Hotline/assets/coin.png" alt="">
+                    </div>
+                    <div
+                        class="rounded-[50px] bg-[rgba(0,166,62,1)]  w-[123px] h-[52px] flex items-center justify-center">
+                        <p class="font-bold text-white inter"><span id="copy-balance">0</span> Copy</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
-        <div class="flex justify-around gap-4 ">
-            <div
-                class="flex gap-2 items-center justify-center rounded-[50px] bg-[rgba(65,255,107,0.1)] w-[123px] h-[52px]">
-                <p id="heart-total" class="font-bold">0</p>
-                <img class="w-[30px] h-[30px]" src="/B12-A5-Emergency-Hotline/assets/heart.png" alt="">
+
+        <!-- Mobile menu (hidden by default) -->
+        <div id="menu" class="hidden md:hidden mt-4 space-y-4">
+            <div class="flex flex-col justify-around gap-4 ">
+                <div
+                    class="flex gap-2 items-center justify-center rounded-[50px] bg-[rgba(65,255,107,0.1)] w-[123px] h-[52px]">
+                    <p id="heart-total" class="font-bold">0</p>
+                    <img class="w-[30px] h-[30px]" src="/B12-A5-Emergency-Hotline/assets/heart.png" alt="">
+                </div>
+                <div
+                    class="flex gap-2 items-center justify-center rounded-[50px] bg-[rgba(65,255,107,0.1)] w-[123px] h-[52px]">
+                    <p class="font-bold" id="call-balance">100</p>
+                    <img class="w-[24px] h-[24px]" src="/B12-A5-Emergency-Hotline/assets/coin.png" alt="">
+                </div>
+                <div class="rounded-[50px] bg-[rgba(0,166,62,1)]  w-[123px] h-[52px] flex items-center justify-center">
+                    <p class="font-bold text-white inter"><span id="copy-balance">0</span> Copy</p>
+                </div>
             </div>
-            <div
-                class="flex gap-2 items-center justify-center rounded-[50px] bg-[rgba(65,255,107,0.1)] w-[123px] h-[52px]">
-                <p class="font-bold" id="call-balance">100</p>
-                <img class="w-[24px] h-[24px]" src="/B12-A5-Emergency-Hotline/assets/coin.png" alt="">
-            </div>
-            <div class="rounded-[50px] bg-[rgba(0,166,62,1)]  w-[123px] h-[52px] flex items-center justify-center">
-                <p class="font-bold text-white inter"><span id="copy-balance">2</span> Copy</p>
-            </div>
+
         </div>
     </nav>
+
+
 
     <!-- banner starts here -->
     <section
@@ -56,8 +130,12 @@
             <img class="w-[92px] h-[92px]" src="/B12-A5-Emergency-Hotline/assets/logo.png" alt="">
         </div>
         <div class="space-y-2">
-            <h1 class="text-white text-center text-[40px] font-bold hind">Emergency Service Directory </h1>
-            <p class="text-white hind">Government Emergency Services at Your Fingertip A Project by Government of the
+            <h1 class="text-white text-center text-[20px] lg:text-[40px] md:text-[40px] font-bold hind">Emergency
+                Service Directory </h1>
+            <p class="text-white hind text-[10px] lg:text-[18pxpx] md:text-[18pxpx] text-center">Government Emergency
+                Services at
+                Your
+                Fingertip A Project by Government of the
                 People's Republic of
                 Bangladesh</p>
         </div>
@@ -65,7 +143,7 @@
 
     <!-- hero section starts here -->
     <section class="flex gap-2 w-full max-w-[1300px] mx-auto">
-        <div class="w-9/12 min-h-56 border border-red-600 mt-5 grid grid-cols-3 gap-5">
+        <div class="lg:w-9/12 md:w-9/12 w-6/12 min-h-56 mt-5 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5">
 
             <!-- Card 1 -->
             <div class="max-w-[380px] w-full rounded-[12px] shadow-md bg-white p-4 card">
@@ -83,11 +161,11 @@
                     <p class="text-[32px] font-bold service-number">999</p>
                     <p class="text-[18px] text-gray-500">Fire</p>
                 </div>
-                <div class="flex gap-4 mt-4 max-w-[380px]">
+                <div class="flex flex-col md:flex-row gap-4 mt-4 max-w-[380px]">
                     <button
-                        class="w-1/2 h-[50px] border border-[rgba(212,214,213,1)] rounded-[8px] bg-white copy-btn"><i
+                        class="w-[90%] h-[50px] border border-[rgba(212,214,213,1)] rounded-[8px] bg-white copy-btn"><i
                             class="fa-solid fa-copy text-gray-500"></i><span class="ml-2 ">Copy</span></button>
-                    <button class="w-1/2 h-[50px] rounded-[8px] bg-[rgba(0,166,62,1)] call-btn"><i
+                    <button class="w-[90%] h-[50px] rounded-[8px] bg-[rgba(0,166,62,1)] call-btn"><i
                             class="fa-solid fa-phone text-white"></i>
                         <span class="ml-2 text-white">Call</span></button>
                 </div>
@@ -109,11 +187,12 @@
                     <p class="text-[32px] font-bold service-number">959</p>
                     <p class="text-[18px] text-gray-500">Fire</p>
                 </div>
-                <div class="flex gap-4 mt-4 max-w-[380px]">
+                <div class="flex flex-col md:flex-row  gap-4 mt-4 max-w-[380px]">
                     <button
-                        class="w-1/2 h-[50px] border border-[rgba(212,214,213,1)] rounded-[8px] bg-white copy-btn"><i
+                        class="w-[90%] lg:h-[50px] md:h-[50px] h-[40px] border border-[rgba(212,214,213,1)] rounded-[8px] bg-white copy-btn"><i
                             class="fa-solid fa-copy text-gray-500"></i><span class="ml-2 ">Copy</span></button>
-                    <button class="w-1/2 h-[50px] rounded-[8px] bg-[rgba(0,166,62,1)] call-btn"><i
+                    <button
+                        class="w-[90%] lg:h-[50px] md:h-[50px] h-[40px] rounded-[8px] bg-[rgba(0,166,62,1)] call-btn"><i
                             class="fa-solid fa-phone text-white "></i>
                         <span class="ml-2 text-white">Call</span></button>
                 </div>
@@ -135,11 +214,11 @@
                     <p class="text-[32px] font-bold service-number">9459</p>
                     <p class="text-[18px] text-gray-500">Fire</p>
                 </div>
-                <div class="flex gap-4 mt-4 max-w-[380px]">
+                <div class="flex flex-col md:flex-row gap-4 mt-4 max-w-[380px]">
                     <button
-                        class="w-1/2 h-[50px] border border-[rgba(212,214,213,1)] rounded-[8px] bg-white copy-btn "><i
+                        class="w-[90%] h-[50px] border border-[rgba(212,214,213,1)] rounded-[8px] bg-white copy-btn "><i
                             class="fa-solid fa-copy text-gray-500"></i><span class="ml-2 ">Copy</span></button>
-                    <button class="w-1/2 h-[50px] rounded-[8px] bg-[rgba(0,166,62,1)] call-btn"><i
+                    <button class="w-[90%] h-[50px] rounded-[8px] bg-[rgba(0,166,62,1)] call-btn"><i
                             class="fa-solid fa-phone text-white"></i>
                         <span class="ml-2 text-white">Call</span></button>
                 </div>
@@ -161,11 +240,11 @@
                     <p class="text-[32px] font-bold service-number">999</p>
                     <p class="text-[18px] text-gray-500">Fire</p>
                 </div>
-                <div class="flex gap-4 mt-4 max-w-[380px]">
+                <div class="flex flex-col md:flex-row gap-4 mt-4 max-w-[380px]">
                     <button
-                        class="w-1/2 h-[50px] border border-[rgba(212,214,213,1)] rounded-[8px] bg-white copy-btn"><i
+                        class="w-[90%] h-[50px] border border-[rgba(212,214,213,1)] rounded-[8px] bg-white copy-btn"><i
                             class="fa-solid fa-copy text-gray-500"></i><span class="ml-2 ">Copy</span></button>
-                    <button class="w-1/2 h-[50px] rounded-[8px] bg-[rgba(0,166,62,1)] call-btn"><i
+                    <button class="w-[90%] h-[50px] rounded-[8px] bg-[rgba(0,166,62,1)] call-btn"><i
                             class="fa-solid fa-phone text-white "></i>
                         <span class="ml-2 text-white">Call</span></button>
                 </div>
@@ -187,11 +266,11 @@
                     <p class="text-[32px] font-bold service-number">999</p>
                     <p class="text-[18px] text-gray-500">Fire</p>
                 </div>
-                <div class="flex gap-4 mt-4 max-w-[380px]">
+                <div class="flex flex-col md:flex-row gap-4 mt-4 max-w-[380px]">
                     <button
-                        class="w-1/2 h-[50px] border border-[rgba(212,214,213,1)] rounded-[8px] bg-white copy-btn"><i
+                        class="w-[90%] h-[50px] border border-[rgba(212,214,213,1)] rounded-[8px] bg-white copy-btn"><i
                             class="fa-solid fa-copy text-gray-500"></i><span class="ml-2 ">Copy</span></button>
-                    <button class="w-1/2 h-[50px] rounded-[8px] bg-[rgba(0,166,62,1)] call-btn"><i
+                    <button class="w-[90%] h-[50px] rounded-[8px] bg-[rgba(0,166,62,1)] call-btn"><i
                             class="fa-solid fa-phone text-white"></i>
                         <span class="ml-2 text-white">Call</span></button>
                 </div>
@@ -213,11 +292,11 @@
                     <p class="text-[32px] font-bold service-number">999</p>
                     <p class="text-[18px] text-gray-500">Fire</p>
                 </div>
-                <div class="flex gap-4 mt-4 max-w-[380px]">
+                <div class="flex flex-col md:flex-row gap-4 mt-4 max-w-[380px]">
                     <button
-                        class="w-1/2 h-[50px] border border-[rgba(212,214,213,1)] rounded-[8px] bg-white copy-btn"><i
+                        class="w-[90%] h-[50px] border border-[rgba(212,214,213,1)] rounded-[8px] bg-white copy-btn"><i
                             class="fa-solid fa-copy text-gray-500"></i><span class="ml-2 ">Copy</span></button>
-                    <button class="w-1/2 h-[50px] rounded-[8px] bg-[rgba(0,166,62,1)] call-btn"><i
+                    <button class="w-[90%] h-[50px] rounded-[8px] bg-[rgba(0,166,62,1)] call-btn"><i
                             class="fa-solid fa-phone text-white "></i>
                         <span class="ml-2 text-white">Call</span></button>
                 </div>
@@ -239,11 +318,11 @@
                     <p class="text-[32px] font-bold service-number">999</p>
                     <p class="text-[18px] text-gray-500">Fire</p>
                 </div>
-                <div class="flex gap-4 mt-4 max-w-[380px]">
+                <div class="flex flex-col md:flex-row gap-4 mt-4 max-w-[380px]">
                     <button
-                        class="w-1/2 h-[50px] border border-[rgba(212,214,213,1)] rounded-[8px] bg-white copy-btn"><i
+                        class="w-[90%] h-[50px] border border-[rgba(212,214,213,1)] rounded-[8px] bg-white copy-btn"><i
                             class="fa-solid fa-copy text-gray-500"></i><span class="ml-2 ">Copy</span></button>
-                    <button class="w-1/2 h-[50px] rounded-[8px] bg-[rgba(0,166,62,1)] call-btn"><i
+                    <button class="w-[90%] h-[50px] rounded-[8px] bg-[rgba(0,166,62,1)] call-btn"><i
                             class="fa-solid fa-phone text-white "></i>
                         <span class="ml-2 text-white">Call</span></button>
                 </div>
@@ -265,11 +344,11 @@
                     <p class="text-[32px] font-bold service-number">902</p>
                     <p class="text-[18px] text-gray-500">Fire</p>
                 </div>
-                <div class="flex gap-4 mt-4 max-w-[380px]">
+                <div class="flex flex-col md:flex-row gap-4 mt-4 max-w-[380px]">
                     <button
-                        class="w-1/2 h-[50px] border border-[rgba(212,214,213,1)] rounded-[8px] bg-white copy-btn"><i
+                        class="w-[90%] h-[50px] border border-[rgba(212,214,213,1)] rounded-[8px] bg-white copy-btn"><i
                             class="fa-solid fa-copy text-gray-500"></i><span class="ml-2 ">Copy</span></button>
-                    <button class="w-1/2 h-[50px] rounded-[8px] bg-[rgba(0,166,62,1)] call-btn"><i
+                    <button class="w-[90%] h-[50px] rounded-[8px] bg-[rgba(0,166,62,1)] call-btn"><i
                             class="fa-solid fa-phone text-white"></i>
                         <span class="ml-2 text-white">Call</span></button>
                 </div>
@@ -289,11 +368,11 @@
                     <p class="text-[32px] font-bold service-number">902</p>
                     <p class="text-[18px] text-gray-500">Fire</p>
                 </div>
-                <div class="flex gap-4 mt-4 max-w-[380px]">
+                <div class="flex flex-col md:flex-row gap-4 mt-4 max-w-[380px]">
                     <button
-                        class="w-1/2 h-[50px] border border-[rgba(212,214,213,1)] rounded-[8px] bg-white copy-btn"><i
+                        class="w-[90%] h-[50px] border border-[rgba(212,214,213,1)] rounded-[8px] bg-white copy-btn"><i
                             class="fa-solid fa-copy text-gray-500"></i><span class="ml-2 ">Copy</span></button>
-                    <button class="w-1/2 h-[50px] rounded-[8px] bg-[rgba(0,166,62,1)] call-btn"><i
+                    <button class="w-[90%] h-[50px] rounded-[8px] bg-[rgba(0,166,62,1)] call-btn"><i
                             class="fa-solid fa-phone text-white"></i>
                         <span class="ml-2 text-white">Call</span></button>
                 </div>
@@ -302,7 +381,8 @@
         </div>
 
         <!-- History section -->
-        <div class="w-3/12 min-h-56 border border-red-900 mt-5 p-2">
+        <div
+            class="lg:w-3/12 md:w-3/12 w-6/12 min-h-56 mt-5 p-2 rounded-[12px] shadow-[0_2px_3px_0_rgba(0,0,0,0.15)] bg-white">
             <div class="flex justify-between">
                 <div class="flex items-center gap-1">
                     <i class="fa-solid fa-clock-rotate-left"></i>
@@ -310,15 +390,26 @@
                 </div>
                 <div>
                     <button
-                        class="w-[100px] h-[40px] rounded-[50px] bg-[rgba(0,166,62,1)] text-white font-bold text-[16px]"
-                        id="clear">clear</button>
+                        class="w-[100px] h-[40px] rounded-[50px] bg-[rgba(0,166,62,1)] text-white font-bold text-[16px] lg:block md:block hidden clear">clear</button>
                 </div>
             </div>
-            <div id="history">
+            <div class="mt-5" id="history">
 
             </div>
+
+            <button
+                class="w-[100px] h-[40px] rounded-[50px] bg-[rgba(0,166,62,1)] text-white font-bold text-[16px] lg:hidden md:hidden block clear">clear</button>
         </div>
     </section>
+    <script>
+        // Toggle mobile menu
+        const menuBtn = document.getElementById('menu-btn');
+        const menu = document.getElementById('menu');
+
+        menuBtn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
     <script src="utility.js"></script>
     <script src="button.js"></script>
 </body>

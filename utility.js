@@ -13,12 +13,15 @@ function alertsystem(buttonClass, serviceName, serviceNumber, balanceId, targetD
 
                 let Name = nameEl.innerText;
                 let Number = numberEl.innerText;
-                alert(`Calling ${Name} ${Number}`)
+                // alert(`Calling ${Name} ${Number}`)
+                alert(`📞 Calling ${Name} (${Number})`);
+
                 append(parentDiv, Name, Number)
             }
 
             else {
-                alert(`sorry you dont have sufficient balance to make the call`)
+                alert(`❌📞 Sorry, you don’t have enough balance to make the call.`);
+
             }
         });
     });
@@ -31,10 +34,17 @@ function append(parentDiv, namee, number) {
     let parent = document.getElementById(parentDiv);
     let serviceName = namee;
     let serviceNumber = number;
-    let dynamicP = document.createElement('p');
+    let dynamicP = document.createElement('div');
     dynamicP.classList.add('call-record')
     const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    dynamicP.innerHTML = `${serviceName} -- ${serviceNumber} ${time}`;
+    dynamicP.innerHTML = `  
+    <div>
+      <h1>${serviceName}</h1>
+       <p>${serviceNumber}</p>
+     </div>
+               <div>
+                <p>${time} </P>
+               </div>`;
 
     parent.appendChild(dynamicP);
 
