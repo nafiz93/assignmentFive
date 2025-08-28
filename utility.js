@@ -51,55 +51,57 @@ function append(parentDiv, namee, number) {
 }
 
 
-function plusminus(buttonClass, balanceId, isAdd, isHeartOrCopy) {
+function plusminus(buttonClass, balanceClass, isAdd, isHeartOrCopy) {
     if (isAdd === true && isHeartOrCopy === true) {
         document.querySelectorAll("." + buttonClass).forEach(button => {
             button.addEventListener("click", function () {
-                let balance = document.getElementById(balanceId);
-                let parsedBalance = parseFloat(balance.innerText);
-                parsedBalance = parsedBalance + 1;
-                balance.textContent = parsedBalance;
+                document.querySelectorAll(`.${balanceClass}`).forEach(balance => {
+                    let parsedBalance = parseFloat(balance.innerText);
+                    parsedBalance = parsedBalance + 1;
+                    balance.textContent = parsedBalance;
+                });
+
             });
         });
     }
     if (isAdd === false && isHeartOrCopy == false) {
         document.querySelectorAll("." + buttonClass).forEach(button => {
             button.addEventListener("click", function () {
-                let balance = document.getElementById(balanceId);
-                let parsedBalance = parseFloat(balance.innerText);
-                if (parsedBalance >= 20) {
-                    parsedBalance = parsedBalance - 20;
-                    balance.innerText = parsedBalance;
-                }
-                else {
-                    balance.innerText = 0;
-                }
+                document.querySelectorAll(`.${balanceClass}`).forEach(balance => {
+                    let parsedBalance = parseFloat(balance.innerText);
+                    if (parsedBalance >= 20) {
+                        parsedBalance = parsedBalance - 20;
+                        balance.innerText = parsedBalance;
+                    }
+                    else {
+                        balance.innerText = 0;
+                    }
+                });
+
+
             });
         });
     }
 }
 
-let toggle = null;
-function hideandseek(id1, id2) {
 
-    let eventbutton = document.getElementById(id1);
+function hideandseek(btn, id1, id2) {
+    let eventbutton = document.getElementById(btn);
+    let showDiv = document.getElementById(id1);
+    let hideDiv = document.getElementById(id2);
 
     eventbutton.addEventListener('click', function () {
-        let element = document.getElementById(id2);
 
-
-        if (toggle && toggle == element) {
-            element.classList.add('block');
-
+        if (window.innerWidth < 768) {
+            showDiv.classList.remove('hidden');
+            hideDiv.classList.add('hidden');
         }
 
-
-        if (toggle && toggle != element) {
-            toggle.classList.add('hidden')
-        }
-        element.classList.remove('hidden');
-
-        toggle = element;
-
-    })
+        window.addEventListener('resize', function () {
+            if (window.innerWidth >= 768) {
+                showDiv.classList.remove('hidden');
+                hideDiv.classList.remove('hidden');
+            }
+        });
+    });
 }

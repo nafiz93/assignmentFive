@@ -1,5 +1,5 @@
 
-alertsystem('call-btn', '.service-name', '.service-number', 'call-balance', '.card', 'history')
+alertsystem('call-btn', '.service-name', '.service-number', 'alert-balance', '.card', 'history')
 plusminus('heart-icon', 'heart-total', true, true)
 plusminus('copy-btn', 'copy-balance', true, true)
 plusminus('call-btn', 'call-balance', false, false)
@@ -25,5 +25,5 @@ document.querySelectorAll(".copy-btn").forEach(btn => {
 
 //let toggle = null;
 
-hideandseek('contact-button', 'hero')
-hideandseek('call-logs-button', 'Myhistory')
+hideandseek('contact-button', 'hero', 'Myhistory')
+hideandseek('call-logs-button', 'Myhistory', 'hero')
