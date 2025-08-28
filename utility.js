@@ -1,13 +1,20 @@
 
-function alertsystem(buttonClass, serviceName, serviceNumber, balanceId) {
+function alertsystem(buttonClass, serviceName, serviceNumber, balanceId, targetDiv, parentDiv) {
     document.querySelectorAll("." + buttonClass).forEach(button => {
         button.addEventListener("click", function () {
             let balance = document.getElementById(balanceId);
             let parsedBalance = parseFloat(balance.innerText);
             if (parsedBalance > 0) {
-                let service = document.getElementById(serviceName);
-                let number = document.getElementById(serviceNumber);
-                alert(`Calling ${service.innerText} ${number.innerText}`)
+                let card = button.closest(targetDiv);
+
+                let nameEl = card.querySelector(serviceName);
+                let numberEl = card.querySelector(serviceNumber);
+
+
+                let Name = nameEl.innerText;
+                let Number = numberEl.innerText;
+                alert(`Calling ${Name} ${Number}`)
+                append(parentDiv, Name, Number)
             }
 
             else {
@@ -18,14 +25,18 @@ function alertsystem(buttonClass, serviceName, serviceNumber, balanceId) {
 }
 
 
-function append(parentId, serviceName, serviceNumber) {
-    let service = document.getElementById(serviceName);
-    let number = document.getElementById(serviceNumber);
-    let parent = document.getElementById(parentId);
-    let p = document.createElement('p');
-    p.innerHTML = ` ${service.innerText} ${number.innerText}`;
-    parent.appendChild(p);
 
+function append(parentDiv, namee, number) {
+
+    let parent = document.getElementById(parentDiv);
+    let serviceName = namee;
+    let serviceNumber = number;
+    let dynamicP = document.createElement('p');
+    dynamicP.classList.add('call-record')
+    const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    dynamicP.innerHTML = `${serviceName} -- ${serviceNumber} ${time}`;
+
+    parent.appendChild(dynamicP);
 
 }
 
