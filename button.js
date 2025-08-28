@@ -22,3 +22,8 @@ document.querySelectorAll(".copy-btn").forEach(btn => {
         alert("📋 Number Copied-- " + number.innerText);
     });
 });
+
+//let toggle = null;
+
+hideandseek('contact-button', 'hero')
+hideandseek('call-logs-button', 'Myhistory')

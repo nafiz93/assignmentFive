@@ -51,10 +51,6 @@ function append(parentDiv, namee, number) {
 }
 
 
-
-
-
-
 function plusminus(buttonClass, balanceId, isAdd, isHeartOrCopy) {
     if (isAdd === true && isHeartOrCopy === true) {
         document.querySelectorAll("." + buttonClass).forEach(button => {
@@ -83,3 +79,27 @@ function plusminus(buttonClass, balanceId, isAdd, isHeartOrCopy) {
     }
 }
 
+let toggle = null;
+function hideandseek(id1, id2) {
+
+    let eventbutton = document.getElementById(id1);
+
+    eventbutton.addEventListener('click', function () {
+        let element = document.getElementById(id2);
+
+
+        if (toggle && toggle == element) {
+            element.classList.add('block');
+
+        }
+
+
+        if (toggle && toggle != element) {
+            toggle.classList.add('hidden')
+        }
+        element.classList.remove('hidden');
+
+        toggle = element;
+
+    })
+}
